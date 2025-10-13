@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic-Aware Network Visualization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #0066cc;
+            --border-color: #e0e0e0;
+            --background-light: #fafafa;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --heading-color: #333;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: #fff;
+            padding-bottom: 60px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        p {
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        .topic-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .topic-list li a {
+            display: block;
+            padding: 20px;
+            background: var(--background-light);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .topic-list li a:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-3px);
+            background: #e3f2fd;
+            border-color: var(--primary-color);
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Topic-Aware Network Visualization</h1>
+        <h2>Temporal Evolution of Topics during Hurricane Dorian</h2>
+        <p>
+            This project presents interactive visualizations of various topics discussed on Twitter during Hurricane Dorian. Each link below opens a page showing the network's evolution over time for that specific topic. Explore how conversations shifted and grew during the event!
+        </p>
+
+        <ul class="topic-list">
+            <li><a href="temporal_evolution_donation_and_volunteering.html" target="_blank">Donation and Volunteering</a></li>
+            <li><a href="temporal_evolution_infrastructure_and_utilities_damage.html" target="_blank">Infrastructure and Utilities Damage</a></li>
+            <li><a href="temporal_evolution_requests_or_needs.html" target="_blank">Requests or Needs</a></li>
+            <li><a href="temporal_evolution_sympathy_and_support.html" target="_blank">Sympathy and Support</a></li>
+            <li><a href="temporal_evolution_affected_individual.html" target="_blank">Affected Individuals</a></li>
+            <li><a href="temporal_evolution_injured_or_dead_people.html" target="_blank">Injured or Dead People</a></li>
+            <li><a href="temporal_evolution_caution_and_advice.html" target="_blank">Caution and Advice</a></li>
+        </ul>
+
+        <a href="index.html" class="back-link">&larr; Back to Home</a>
+    </main>
+</body>
+</html>

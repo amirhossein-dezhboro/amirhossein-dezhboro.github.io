@@ -56,12 +56,25 @@
         const height = window.innerHeight * 0.8;
         let simulation = null;
 
-        const svg = d3.select("#chart-container").append("svg")
-            .attr("viewBox", [-width * 0.25, -height * 0.25, width * 1.5, height * 2.0])
 
-        const gLinks = svg.append("g").attr("stroke-opacity", 0.6);
-        const gNodes = svg.append("g");
-        const gLabels = svg.append("g");
+        const svg = d3.select("#chart-container").append("svg")
+            .attr("viewBox", [0, 0, width, height*2.5])
+            .style("width", "100%")
+            .style("height", "100%");
+        
+        const gMain = svg.append("g");
+        const gLinks = gMain.append("g").attr("stroke-opacity", 0.6);
+        const gNodes = gMain.append("g");
+        const gLabels = gMain.append("g");
+
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 5]) // Limits: [Zoom out 10x, Zoom in 5x]
+            .on("zoom", (event) => {
+                gMain.attr("transform", event.transform);
+            });
+        svg.call(zoom);        
+        svg.call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
+           
 
         // Function to load and render the selected network
         function loadNetwork(type) {

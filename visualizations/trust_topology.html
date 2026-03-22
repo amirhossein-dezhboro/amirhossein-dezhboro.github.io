@@ -134,10 +134,13 @@
                 simulation.on("tick", () => {
                     link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
                         .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
-                    node.attr("cx", d => d.x).attr("cy", d => d.y);
+                    node.attr("cx", d => d.x = Math.max(20, Math.min(width - 20, d.x)))
+                        .attr("cy", d => d.y = Math.max(20, Math.min(height - 20, d.y)));
                     label.attr("x", d => d.x).attr("y", d => d.y);
                 });
 
+
+                
                 function dragstarted(event) {
                     if (!event.active) simulation.alphaTarget(0.3).restart();
                     event.subject.fx = event.subject.x; event.subject.fy = event.subject.y;

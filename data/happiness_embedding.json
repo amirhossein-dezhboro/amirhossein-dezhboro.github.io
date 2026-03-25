@@ -1,0 +1,309 @@
+{
+  "seed": "happiness",
+  "opposite": "sadness",
+  "nodes": [
+    {
+      "id": "happiness",
+      "label": "HAPPINESS",
+      "group": "pole_a",
+      "x": -3.197004795074463,
+      "y": -6.979442801480218e-09,
+      "sim_a": 1.0,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "sadness",
+      "label": "SADNESS",
+      "group": "pole_b",
+      "x": 3.197004795074463,
+      "y": -1.1713763292675594e-08,
+      "sim_a": 0.0,
+      "sim_b": 1.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "sorrow",
+      "label": "sorrow",
+      "group": "bridge",
+      "x": 2.319415330886841,
+      "y": 1.51301109790802,
+      "sim_a": 0.4661,
+      "sim_b": 0.8355,
+      "midpoint_dist": 0.2487
+    },
+    {
+      "id": "joy",
+      "label": "joy",
+      "group": "bridge",
+      "x": -0.17132247984409332,
+      "y": 1.7170116901397705,
+      "sim_a": 0.607,
+      "sim_b": 0.609,
+      "midpoint_dist": 0.3045
+    },
+    {
+      "id": "anguish",
+      "label": "anguish",
+      "group": "bridge",
+      "x": 1.5814361572265625,
+      "y": 2.628326177597046,
+      "sim_a": 0.431,
+      "sim_b": 0.7326,
+      "midpoint_dist": 0.3289
+    },
+    {
+      "id": "despair",
+      "label": "despair",
+      "group": "bridge",
+      "x": 0.9542452692985535,
+      "y": 2.706646203994751,
+      "sim_a": 0.4788,
+      "sim_b": 0.674,
+      "midpoint_dist": 0.3371
+    },
+    {
+      "id": "grief",
+      "label": "grief",
+      "group": "bridge",
+      "x": 1.8493003845214844,
+      "y": 2.216297149658203,
+      "sim_a": 0.4146,
+      "sim_b": 0.7338,
+      "midpoint_dist": 0.3373
+    },
+    {
+      "id": "loneliness",
+      "label": "loneliness",
+      "group": "bridge",
+      "x": 0.4557186961174011,
+      "y": 2.0700182914733887,
+      "sim_a": 0.5054,
+      "sim_b": 0.6155,
+      "midpoint_dist": 0.3569
+    },
+    {
+      "id": "longing",
+      "label": "longing",
+      "group": "bridge",
+      "x": 0.023222412914037704,
+      "y": 2.8937764167785645,
+      "sim_a": 0.5137,
+      "sim_b": 0.5555,
+      "midpoint_dist": 0.3877
+    },
+    {
+      "id": "contentment",
+      "label": "contentment",
+      "group": "bridge",
+      "x": -1.382951021194458,
+      "y": 2.2545900344848633,
+      "sim_a": 0.6199,
+      "sim_b": 0.429,
+      "midpoint_dist": 0.4035
+    },
+    {
+      "id": "shame",
+      "label": "shame",
+      "group": "bridge",
+      "x": 0.7095625400543213,
+      "y": 2.8793482780456543,
+      "sim_a": 0.4327,
+      "sim_b": 0.5966,
+      "midpoint_dist": 0.4083
+    },
+    {
+      "id": "disappointment",
+      "label": "disappointment",
+      "group": "bridge",
+      "x": 1.1924924850463867,
+      "y": 3.398998737335205,
+      "sim_a": 0.3746,
+      "sim_b": 0.6208,
+      "midpoint_dist": 0.4261
+    },
+    {
+      "id": "satisfaction",
+      "label": "satisfaction",
+      "group": "neighbor_a",
+      "x": -0.8481340408325195,
+      "y": 3.1529793739318848,
+      "sim_a": 0.5423,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "enjoyment",
+      "label": "enjoyment",
+      "group": "neighbor_a",
+      "x": -1.7496659755706787,
+      "y": 3.335427761077881,
+      "sim_a": 0.5416,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "prosperity",
+      "label": "prosperity",
+      "group": "neighbor_a",
+      "x": -2.9369468688964844,
+      "y": 3.2072949409484863,
+      "sim_a": 0.5321,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "love",
+      "label": "love",
+      "group": "neighbor_a",
+      "x": -1.3122775554656982,
+      "y": 3.026916980743408,
+      "sim_a": 0.5148,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "pleasure",
+      "label": "pleasure",
+      "group": "neighbor_a",
+      "x": -0.9278026819229126,
+      "y": 3.616061210632324,
+      "sim_a": 0.4786,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "sense",
+      "label": "sense",
+      "group": "neighbor_a",
+      "x": -0.1886061728000641,
+      "y": 3.3881497383117676,
+      "sim_a": 0.4748,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "regret",
+      "label": "regret",
+      "group": "neighbor_b",
+      "x": 2.110011339187622,
+      "y": 3.172689199447632,
+      "sim_a": 0.0,
+      "sim_b": 0.659,
+      "midpoint_dist": null
+    },
+    {
+      "id": "bewilderment",
+      "label": "bewilderment",
+      "group": "neighbor_b",
+      "x": 1.7979258298873901,
+      "y": 3.3828043937683105,
+      "sim_a": 0.0,
+      "sim_b": 0.6302,
+      "midpoint_dist": null
+    },
+    {
+      "id": "dismay",
+      "label": "dismay",
+      "group": "neighbor_b",
+      "x": 1.5876234769821167,
+      "y": 3.8597073554992676,
+      "sim_a": 0.0,
+      "sim_b": 0.6179,
+      "midpoint_dist": null
+    },
+    {
+      "id": "anger",
+      "label": "anger",
+      "group": "neighbor_b",
+      "x": 1.6725279092788696,
+      "y": 3.601329803466797,
+      "sim_a": 0.0,
+      "sim_b": 0.61,
+      "midpoint_dist": null
+    },
+    {
+      "id": "astonishment",
+      "label": "astonishment",
+      "group": "neighbor_b",
+      "x": 1.3942116498947144,
+      "y": 3.574032783508301,
+      "sim_a": 0.0,
+      "sim_b": 0.6021,
+      "midpoint_dist": null
+    },
+    {
+      "id": "__midpoint__",
+      "label": "MIDPOINT",
+      "group": "midpoint",
+      "x": 0.0,
+      "y": 0.0,
+      "sim_a": 0.5,
+      "sim_b": 0.5,
+      "midpoint_dist": 0.0
+    }
+  ],
+  "bridges": [
+    {
+      "word": "sorrow",
+      "midpoint_dist": 0.2487,
+      "sim_to_seed": 0.4661,
+      "sim_to_opposite": 0.8355
+    },
+    {
+      "word": "joy",
+      "midpoint_dist": 0.3045,
+      "sim_to_seed": 0.607,
+      "sim_to_opposite": 0.609
+    },
+    {
+      "word": "anguish",
+      "midpoint_dist": 0.3289,
+      "sim_to_seed": 0.431,
+      "sim_to_opposite": 0.7326
+    },
+    {
+      "word": "despair",
+      "midpoint_dist": 0.3371,
+      "sim_to_seed": 0.4788,
+      "sim_to_opposite": 0.674
+    },
+    {
+      "word": "grief",
+      "midpoint_dist": 0.3373,
+      "sim_to_seed": 0.4146,
+      "sim_to_opposite": 0.7338
+    },
+    {
+      "word": "loneliness",
+      "midpoint_dist": 0.3569,
+      "sim_to_seed": 0.5054,
+      "sim_to_opposite": 0.6155
+    },
+    {
+      "word": "longing",
+      "midpoint_dist": 0.3877,
+      "sim_to_seed": 0.5137,
+      "sim_to_opposite": 0.5555
+    },
+    {
+      "word": "contentment",
+      "midpoint_dist": 0.4035,
+      "sim_to_seed": 0.6199,
+      "sim_to_opposite": 0.429
+    },
+    {
+      "word": "shame",
+      "midpoint_dist": 0.4083,
+      "sim_to_seed": 0.4327,
+      "sim_to_opposite": 0.5966
+    },
+    {
+      "word": "disappointment",
+      "midpoint_dist": 0.4261,
+      "sim_to_seed": 0.3746,
+      "sim_to_opposite": 0.6208
+    }
+  ],
+  "method": "GloVe embedding midpoint"
+}

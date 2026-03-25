@@ -1,0 +1,409 @@
+{
+  "seed": "love",
+  "opposite": "hatred",
+  "nodes": [
+    {
+      "id": "love",
+      "label": "LOVE",
+      "group": "pole_a",
+      "x": -3.875239372253418,
+      "y": -1.8274253221761683e-08,
+      "sim_a": 1.0,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "hatred",
+      "label": "HATRED",
+      "group": "pole_b",
+      "x": 3.875239372253418,
+      "y": -3.01583753525847e-08,
+      "sim_a": 0.0,
+      "sim_b": 1.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "hate",
+      "label": "hate",
+      "group": "bridge",
+      "x": 0.6052395105361938,
+      "y": 0.8561166524887085,
+      "sim_a": 0.453,
+      "sim_b": 0.6529,
+      "midpoint_dist": 0.3127
+    },
+    {
+      "id": "passion",
+      "label": "passion",
+      "group": "bridge",
+      "x": -1.486040472984314,
+      "y": 1.9021574258804321,
+      "sim_a": 0.6261,
+      "sim_b": 0.4227,
+      "midpoint_dist": 0.3664
+    },
+    {
+      "id": "feelings",
+      "label": "feelings",
+      "group": "bridge",
+      "x": -0.08220872282981873,
+      "y": 2.9240317344665527,
+      "sim_a": 0.481,
+      "sim_b": 0.5456,
+      "midpoint_dist": 0.3676
+    },
+    {
+      "id": "affection",
+      "label": "affection",
+      "group": "bridge",
+      "x": -1.3201608657836914,
+      "y": 2.6750054359436035,
+      "sim_a": 0.5818,
+      "sim_b": 0.4176,
+      "midpoint_dist": 0.3949
+    },
+    {
+      "id": "jealousy",
+      "label": "jealousy",
+      "group": "bridge",
+      "x": 0.2089545875787735,
+      "y": 2.8006715774536133,
+      "sim_a": 0.4156,
+      "sim_b": 0.5497,
+      "midpoint_dist": 0.402
+    },
+    {
+      "id": "desire",
+      "label": "desire",
+      "group": "bridge",
+      "x": -0.7964872121810913,
+      "y": 2.8164780139923096,
+      "sim_a": 0.4998,
+      "sim_b": 0.4423,
+      "midpoint_dist": 0.4251
+    },
+    {
+      "id": "anger",
+      "label": "anger",
+      "group": "bridge",
+      "x": 1.2546143531799316,
+      "y": 3.394411563873291,
+      "sim_a": 0.2832,
+      "sim_b": 0.5977,
+      "midpoint_dist": 0.4453
+    },
+    {
+      "id": "devotion",
+      "label": "devotion",
+      "group": "bridge",
+      "x": -0.9239820241928101,
+      "y": 1.9979591369628906,
+      "sim_a": 0.4835,
+      "sim_b": 0.4048,
+      "midpoint_dist": 0.4591
+    },
+    {
+      "id": "fear",
+      "label": "fear",
+      "group": "bridge",
+      "x": 0.2734181880950928,
+      "y": 3.0874810218811035,
+      "sim_a": 0.3517,
+      "sim_b": 0.5138,
+      "midpoint_dist": 0.4618
+    },
+    {
+      "id": "rage",
+      "label": "rage",
+      "group": "bridge",
+      "x": 0.3787347674369812,
+      "y": 2.4929914474487305,
+      "sim_a": 0.3413,
+      "sim_b": 0.5153,
+      "midpoint_dist": 0.4668
+    },
+    {
+      "id": "loves",
+      "label": "loves",
+      "group": "neighbor_a",
+      "x": -2.757718324661255,
+      "y": 1.8030540943145752,
+      "sim_a": 0.642,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "loved",
+      "label": "loved",
+      "group": "neighbor_a",
+      "x": -2.6606647968292236,
+      "y": 2.5111610889434814,
+      "sim_a": 0.5953,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "romantic",
+      "label": "romantic",
+      "group": "neighbor_a",
+      "x": -3.228414297103882,
+      "y": 2.6772968769073486,
+      "sim_a": 0.5921,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "lovers",
+      "label": "lovers",
+      "group": "neighbor_a",
+      "x": -2.7403533458709717,
+      "y": 2.556305170059204,
+      "sim_a": 0.5904,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "lover",
+      "label": "lover",
+      "group": "neighbor_a",
+      "x": -2.777843475341797,
+      "y": 2.2785847187042236,
+      "sim_a": 0.5842,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "always",
+      "label": "always",
+      "group": "neighbor_a",
+      "x": -2.335322380065918,
+      "y": 3.1589622497558594,
+      "sim_a": 0.5701,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "romance",
+      "label": "romance",
+      "group": "neighbor_a",
+      "x": -2.811053514480591,
+      "y": 2.394667625427246,
+      "sim_a": 0.5692,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "loving",
+      "label": "loving",
+      "group": "neighbor_a",
+      "x": -2.1047959327697754,
+      "y": 2.2102880477905273,
+      "sim_a": 0.5655,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "really",
+      "label": "really",
+      "group": "neighbor_a",
+      "x": -2.5063791275024414,
+      "y": 2.901746988296509,
+      "sim_a": 0.5596,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "know",
+      "label": "know",
+      "group": "neighbor_a",
+      "x": -2.2782015800476074,
+      "y": 2.8230392932891846,
+      "sim_a": 0.547,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "hostility",
+      "label": "hostility",
+      "group": "neighbor_b",
+      "x": 2.1346306800842285,
+      "y": 3.555588722229004,
+      "sim_a": 0.0,
+      "sim_b": 0.7024,
+      "midpoint_dist": null
+    },
+    {
+      "id": "animosity",
+      "label": "animosity",
+      "group": "neighbor_b",
+      "x": 2.052156686782837,
+      "y": 3.766152858734131,
+      "sim_a": 0.0,
+      "sim_b": 0.6769,
+      "midpoint_dist": null
+    },
+    {
+      "id": "resentment",
+      "label": "resentment",
+      "group": "neighbor_b",
+      "x": 2.001908779144287,
+      "y": 3.7423980236053467,
+      "sim_a": 0.0,
+      "sim_b": 0.6562,
+      "midpoint_dist": null
+    },
+    {
+      "id": "enmity",
+      "label": "enmity",
+      "group": "neighbor_b",
+      "x": 2.1406586170196533,
+      "y": 3.0227129459381104,
+      "sim_a": 0.0,
+      "sim_b": 0.6534,
+      "midpoint_dist": null
+    },
+    {
+      "id": "bigotry",
+      "label": "bigotry",
+      "group": "neighbor_b",
+      "x": 2.1633050441741943,
+      "y": 2.3793907165527344,
+      "sim_a": 0.0,
+      "sim_b": 0.6492,
+      "midpoint_dist": null
+    },
+    {
+      "id": "intolerance",
+      "label": "intolerance",
+      "group": "neighbor_b",
+      "x": 2.4912827014923096,
+      "y": 2.3220996856689453,
+      "sim_a": 0.0,
+      "sim_b": 0.6435,
+      "midpoint_dist": null
+    },
+    {
+      "id": "inciting",
+      "label": "inciting",
+      "group": "neighbor_b",
+      "x": 3.026958465576172,
+      "y": 1.5981638431549072,
+      "sim_a": 0.0,
+      "sim_b": 0.6268,
+      "midpoint_dist": null
+    },
+    {
+      "id": "distrust",
+      "label": "distrust",
+      "group": "neighbor_b",
+      "x": 1.8803577423095703,
+      "y": 3.9970316886901855,
+      "sim_a": 0.0,
+      "sim_b": 0.6252,
+      "midpoint_dist": null
+    },
+    {
+      "id": "mistrust",
+      "label": "mistrust",
+      "group": "neighbor_b",
+      "x": 2.109875202178955,
+      "y": 3.848679780960083,
+      "sim_a": 0.0,
+      "sim_b": 0.621,
+      "midpoint_dist": null
+    },
+    {
+      "id": "prejudice",
+      "label": "prejudice",
+      "group": "neighbor_b",
+      "x": 1.818368673324585,
+      "y": 3.03313946723938,
+      "sim_a": 0.0,
+      "sim_b": 0.6051,
+      "midpoint_dist": null
+    },
+    {
+      "id": "bitterness",
+      "label": "bitterness",
+      "group": "neighbor_b",
+      "x": 1.5360820293426514,
+      "y": 3.8657217025756836,
+      "sim_a": 0.0,
+      "sim_b": 0.6043,
+      "midpoint_dist": null
+    },
+    {
+      "id": "__midpoint__",
+      "label": "MIDPOINT",
+      "group": "midpoint",
+      "x": 0.0,
+      "y": 0.0,
+      "sim_a": 0.5,
+      "sim_b": 0.5,
+      "midpoint_dist": 0.0
+    }
+  ],
+  "bridges": [
+    {
+      "word": "hate",
+      "midpoint_dist": 0.3127,
+      "sim_to_seed": 0.453,
+      "sim_to_opposite": 0.6529
+    },
+    {
+      "word": "passion",
+      "midpoint_dist": 0.3664,
+      "sim_to_seed": 0.6261,
+      "sim_to_opposite": 0.4227
+    },
+    {
+      "word": "feelings",
+      "midpoint_dist": 0.3676,
+      "sim_to_seed": 0.481,
+      "sim_to_opposite": 0.5456
+    },
+    {
+      "word": "affection",
+      "midpoint_dist": 0.3949,
+      "sim_to_seed": 0.5818,
+      "sim_to_opposite": 0.4176
+    },
+    {
+      "word": "jealousy",
+      "midpoint_dist": 0.402,
+      "sim_to_seed": 0.4156,
+      "sim_to_opposite": 0.5497
+    },
+    {
+      "word": "desire",
+      "midpoint_dist": 0.4251,
+      "sim_to_seed": 0.4998,
+      "sim_to_opposite": 0.4423
+    },
+    {
+      "word": "anger",
+      "midpoint_dist": 0.4453,
+      "sim_to_seed": 0.2832,
+      "sim_to_opposite": 0.5977
+    },
+    {
+      "word": "devotion",
+      "midpoint_dist": 0.4591,
+      "sim_to_seed": 0.4835,
+      "sim_to_opposite": 0.4048
+    },
+    {
+      "word": "fear",
+      "midpoint_dist": 0.4618,
+      "sim_to_seed": 0.3517,
+      "sim_to_opposite": 0.5138
+    },
+    {
+      "word": "rage",
+      "midpoint_dist": 0.4668,
+      "sim_to_seed": 0.3413,
+      "sim_to_opposite": 0.5153
+    }
+  ],
+  "method": "GloVe embedding midpoint"
+}

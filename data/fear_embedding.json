@@ -1,0 +1,409 @@
+{
+  "seed": "fear",
+  "opposite": "courage",
+  "nodes": [
+    {
+      "id": "fear",
+      "label": "FEAR",
+      "group": "pole_a",
+      "x": -3.889394760131836,
+      "y": -2.6710038625310517e-09,
+      "sim_a": 1.0,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "courage",
+      "label": "COURAGE",
+      "group": "pole_b",
+      "x": 3.889394998550415,
+      "y": 1.0920587101281853e-08,
+      "sim_a": 0.0,
+      "sim_b": 1.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "sense",
+      "label": "sense",
+      "group": "bridge",
+      "x": -1.0664513111114502,
+      "y": -2.139451503753662,
+      "sim_a": 0.5652,
+      "sim_b": 0.4249,
+      "midpoint_dist": 0.3793
+    },
+    {
+      "id": "determination",
+      "label": "determination",
+      "group": "bridge",
+      "x": 0.9597764015197754,
+      "y": -2.5465521812438965,
+      "sim_a": 0.3009,
+      "sim_b": 0.5897,
+      "midpoint_dist": 0.4222
+    },
+    {
+      "id": "desire",
+      "label": "desire",
+      "group": "bridge",
+      "x": -0.9314590692520142,
+      "y": -2.437056064605713,
+      "sim_a": 0.5114,
+      "sim_b": 0.4035,
+      "midpoint_dist": 0.4253
+    },
+    {
+      "id": "faith",
+      "label": "faith",
+      "group": "bridge",
+      "x": 0.01721920073032379,
+      "y": -2.30869722366333,
+      "sim_a": 0.3867,
+      "sim_b": 0.4791,
+      "midpoint_dist": 0.4471
+    },
+    {
+      "id": "afraid",
+      "label": "afraid",
+      "group": "bridge",
+      "x": -2.1492574214935303,
+      "y": -1.3853144645690918,
+      "sim_a": 0.6409,
+      "sim_b": 0.2576,
+      "midpoint_dist": 0.4486
+    },
+    {
+      "id": "anger",
+      "label": "anger",
+      "group": "bridge",
+      "x": -2.2378952503204346,
+      "y": -1.9991660118103027,
+      "sim_a": 0.6115,
+      "sim_b": 0.2629,
+      "midpoint_dist": 0.4623
+    },
+    {
+      "id": "pride",
+      "label": "pride",
+      "group": "bridge",
+      "x": -0.05179743841290474,
+      "y": -2.3284413814544678,
+      "sim_a": 0.3827,
+      "sim_b": 0.4599,
+      "midpoint_dist": 0.4625
+    },
+    {
+      "id": "passion",
+      "label": "passion",
+      "group": "bridge",
+      "x": 0.269370973110199,
+      "y": -2.6675353050231934,
+      "sim_a": 0.3407,
+      "sim_b": 0.4938,
+      "midpoint_dist": 0.4641
+    },
+    {
+      "id": "shame",
+      "label": "shame",
+      "group": "bridge",
+      "x": -0.9389340877532959,
+      "y": -2.1995749473571777,
+      "sim_a": 0.4769,
+      "sim_b": 0.3727,
+      "midpoint_dist": 0.4666
+    },
+    {
+      "id": "doubt",
+      "label": "doubt",
+      "group": "bridge",
+      "x": -1.4402248859405518,
+      "y": -2.6323256492614746,
+      "sim_a": 0.547,
+      "sim_b": 0.3076,
+      "midpoint_dist": 0.4697
+    },
+    {
+      "id": "worry",
+      "label": "worry",
+      "group": "neighbor_a",
+      "x": -2.9926717281341553,
+      "y": -2.3149240016937256,
+      "sim_a": 0.7109,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "fears",
+      "label": "fears",
+      "group": "neighbor_a",
+      "x": -3.8136978149414062,
+      "y": -1.9671759605407715,
+      "sim_a": 0.7093,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "fearing",
+      "label": "fearing",
+      "group": "neighbor_a",
+      "x": -3.5483310222625732,
+      "y": -1.6001873016357422,
+      "sim_a": 0.6811,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "fearful",
+      "label": "fearful",
+      "group": "neighbor_a",
+      "x": -2.7827882766723633,
+      "y": -2.116433620452881,
+      "sim_a": 0.624,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "worried",
+      "label": "worried",
+      "group": "neighbor_a",
+      "x": -3.0365095138549805,
+      "y": -2.771984338760376,
+      "sim_a": 0.6144,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "feared",
+      "label": "feared",
+      "group": "neighbor_a",
+      "x": -3.206186294555664,
+      "y": -1.9980827569961548,
+      "sim_a": 0.6104,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "concern",
+      "label": "concern",
+      "group": "neighbor_a",
+      "x": -2.472384452819824,
+      "y": -2.728217601776123,
+      "sim_a": 0.5958,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "anxiety",
+      "label": "anxiety",
+      "group": "neighbor_a",
+      "x": -2.8761916160583496,
+      "y": -2.5850040912628174,
+      "sim_a": 0.5953,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "danger",
+      "label": "danger",
+      "group": "neighbor_a",
+      "x": -2.2756307125091553,
+      "y": -1.6875126361846924,
+      "sim_a": 0.5893,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "panic",
+      "label": "panic",
+      "group": "neighbor_a",
+      "x": -3.2155070304870605,
+      "y": -1.9091057777404785,
+      "sim_a": 0.583,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "tenacity",
+      "label": "tenacity",
+      "group": "neighbor_b",
+      "x": 2.11729097366333,
+      "y": -3.0218796730041504,
+      "sim_a": 0.0,
+      "sim_b": 0.6773,
+      "midpoint_dist": null
+    },
+    {
+      "id": "perseverance",
+      "label": "perseverance",
+      "group": "neighbor_b",
+      "x": 2.570892810821533,
+      "y": -3.1000983715057373,
+      "sim_a": 0.0,
+      "sim_b": 0.677,
+      "midpoint_dist": null
+    },
+    {
+      "id": "bravery",
+      "label": "bravery",
+      "group": "neighbor_b",
+      "x": 3.0343854427337646,
+      "y": -2.244208812713623,
+      "sim_a": 0.0,
+      "sim_b": 0.651,
+      "midpoint_dist": null
+    },
+    {
+      "id": "resourcefulness",
+      "label": "resourcefulness",
+      "group": "neighbor_b",
+      "x": 1.9639747142791748,
+      "y": -3.252185821533203,
+      "sim_a": 0.0,
+      "sim_b": 0.6053,
+      "midpoint_dist": null
+    },
+    {
+      "id": "heroism",
+      "label": "heroism",
+      "group": "neighbor_b",
+      "x": 2.221273899078369,
+      "y": -2.522101879119873,
+      "sim_a": 0.0,
+      "sim_b": 0.5912,
+      "midpoint_dist": null
+    },
+    {
+      "id": "fortitude",
+      "label": "fortitude",
+      "group": "neighbor_b",
+      "x": 2.186666488647461,
+      "y": -3.0276432037353516,
+      "sim_a": 0.0,
+      "sim_b": 0.5895,
+      "midpoint_dist": null
+    },
+    {
+      "id": "dedication",
+      "label": "dedication",
+      "group": "neighbor_b",
+      "x": 2.0010249614715576,
+      "y": -3.5520918369293213,
+      "sim_a": 0.0,
+      "sim_b": 0.5768,
+      "midpoint_dist": null
+    },
+    {
+      "id": "humility",
+      "label": "humility",
+      "group": "neighbor_b",
+      "x": 1.6198959350585938,
+      "y": -3.6002888679504395,
+      "sim_a": 0.0,
+      "sim_b": 0.5758,
+      "midpoint_dist": null
+    },
+    {
+      "id": "courageous",
+      "label": "courageous",
+      "group": "neighbor_b",
+      "x": 2.1843085289001465,
+      "y": -2.731433391571045,
+      "sim_a": 0.0,
+      "sim_b": 0.5713,
+      "midpoint_dist": null
+    },
+    {
+      "id": "honesty",
+      "label": "honesty",
+      "group": "neighbor_b",
+      "x": 1.6248643398284912,
+      "y": -3.430820941925049,
+      "sim_a": 0.0,
+      "sim_b": 0.5702,
+      "midpoint_dist": null
+    },
+    {
+      "id": "compassion",
+      "label": "compassion",
+      "group": "neighbor_b",
+      "x": 1.1139681339263916,
+      "y": -3.025195598602295,
+      "sim_a": 0.0,
+      "sim_b": 0.5507,
+      "midpoint_dist": null
+    },
+    {
+      "id": "__midpoint__",
+      "label": "MIDPOINT",
+      "group": "midpoint",
+      "x": 0.0,
+      "y": 0.0,
+      "sim_a": 0.5,
+      "sim_b": 0.5,
+      "midpoint_dist": 0.0
+    }
+  ],
+  "bridges": [
+    {
+      "word": "sense",
+      "midpoint_dist": 0.3793,
+      "sim_to_seed": 0.5652,
+      "sim_to_opposite": 0.4249
+    },
+    {
+      "word": "determination",
+      "midpoint_dist": 0.4222,
+      "sim_to_seed": 0.3009,
+      "sim_to_opposite": 0.5897
+    },
+    {
+      "word": "desire",
+      "midpoint_dist": 0.4253,
+      "sim_to_seed": 0.5114,
+      "sim_to_opposite": 0.4035
+    },
+    {
+      "word": "faith",
+      "midpoint_dist": 0.4471,
+      "sim_to_seed": 0.3867,
+      "sim_to_opposite": 0.4791
+    },
+    {
+      "word": "afraid",
+      "midpoint_dist": 0.4486,
+      "sim_to_seed": 0.6409,
+      "sim_to_opposite": 0.2576
+    },
+    {
+      "word": "anger",
+      "midpoint_dist": 0.4623,
+      "sim_to_seed": 0.6115,
+      "sim_to_opposite": 0.2629
+    },
+    {
+      "word": "pride",
+      "midpoint_dist": 0.4625,
+      "sim_to_seed": 0.3827,
+      "sim_to_opposite": 0.4599
+    },
+    {
+      "word": "passion",
+      "midpoint_dist": 0.4641,
+      "sim_to_seed": 0.3407,
+      "sim_to_opposite": 0.4938
+    },
+    {
+      "word": "shame",
+      "midpoint_dist": 0.4666,
+      "sim_to_seed": 0.4769,
+      "sim_to_opposite": 0.3727
+    },
+    {
+      "word": "doubt",
+      "midpoint_dist": 0.4697,
+      "sim_to_seed": 0.547,
+      "sim_to_opposite": 0.3076
+    }
+  ],
+  "method": "GloVe embedding midpoint"
+}

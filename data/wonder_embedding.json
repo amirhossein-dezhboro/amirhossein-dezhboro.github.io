@@ -1,0 +1,389 @@
+{
+  "seed": "wonder",
+  "opposite": "indifference",
+  "nodes": [
+    {
+      "id": "wonder",
+      "label": "WONDER",
+      "group": "pole_a",
+      "x": -3.7315127849578857,
+      "y": -1.1111707109989766e-09,
+      "sim_a": 1.0,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "indifference",
+      "label": "INDIFFERENCE",
+      "group": "pole_b",
+      "x": 3.7315127849578857,
+      "y": 8.564622788753695e-09,
+      "sim_a": 0.0,
+      "sim_b": 1.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "ignorance",
+      "label": "ignorance",
+      "group": "bridge",
+      "x": 1.5695290565490723,
+      "y": -1.8230866193771362,
+      "sim_a": 0.2372,
+      "sim_b": 0.6634,
+      "midpoint_dist": 0.3813
+    },
+    {
+      "id": "cynicism",
+      "label": "cynicism",
+      "group": "bridge",
+      "x": 1.1028451919555664,
+      "y": -2.3821606636047363,
+      "sim_a": 0.2547,
+      "sim_b": 0.6084,
+      "midpoint_dist": 0.4116
+    },
+    {
+      "id": "disdain",
+      "label": "disdain",
+      "group": "bridge",
+      "x": 0.9648652076721191,
+      "y": -2.16165828704834,
+      "sim_a": 0.226,
+      "sim_b": 0.6259,
+      "midpoint_dist": 0.4151
+    },
+    {
+      "id": "seeming",
+      "label": "seeming",
+      "group": "bridge",
+      "x": 0.546839714050293,
+      "y": -2.161440372467041,
+      "sim_a": 0.259,
+      "sim_b": 0.5777,
+      "midpoint_dist": 0.4317
+    },
+    {
+      "id": "arrogance",
+      "label": "arrogance",
+      "group": "bridge",
+      "x": 1.1753602027893066,
+      "y": -2.5091469287872314,
+      "sim_a": 0.2083,
+      "sim_b": 0.5849,
+      "midpoint_dist": 0.455
+    },
+    {
+      "id": "skepticism",
+      "label": "skepticism",
+      "group": "bridge",
+      "x": 0.1942610889673233,
+      "y": -1.9192578792572021,
+      "sim_a": 0.3084,
+      "sim_b": 0.4894,
+      "midpoint_dist": 0.4684
+    },
+    {
+      "id": "ambivalence",
+      "label": "ambivalence",
+      "group": "bridge",
+      "x": 0.6644299030303955,
+      "y": -2.4322524070739746,
+      "sim_a": 0.2076,
+      "sim_b": 0.5277,
+      "midpoint_dist": 0.4972
+    },
+    {
+      "id": "sense",
+      "label": "sense",
+      "group": "bridge",
+      "x": -1.1679991483688354,
+      "y": -3.103050947189331,
+      "sim_a": 0.4441,
+      "sim_b": 0.3385,
+      "midpoint_dist": 0.5022
+    },
+    {
+      "id": "despair",
+      "label": "despair",
+      "group": "bridge",
+      "x": 0.004228392615914345,
+      "y": -2.571643590927124,
+      "sim_a": 0.2928,
+      "sim_b": 0.4532,
+      "midpoint_dist": 0.5037
+    },
+    {
+      "id": "frustration",
+      "label": "frustration",
+      "group": "bridge",
+      "x": 0.1282806694507599,
+      "y": -3.0210413932800293,
+      "sim_a": 0.2791,
+      "sim_b": 0.4582,
+      "midpoint_dist": 0.5077
+    },
+    {
+      "id": "wondering",
+      "label": "wondering",
+      "group": "neighbor_a",
+      "x": -2.875974655151367,
+      "y": -2.1988906860351562,
+      "sim_a": 0.6409,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "wonders",
+      "label": "wonders",
+      "group": "neighbor_a",
+      "x": -2.736577033996582,
+      "y": -1.1125630140304565,
+      "sim_a": 0.6318,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "why",
+      "label": "why",
+      "group": "neighbor_a",
+      "x": -2.499509334564209,
+      "y": -2.796935558319092,
+      "sim_a": 0.6096,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "imagine",
+      "label": "imagine",
+      "group": "neighbor_a",
+      "x": -2.4941158294677734,
+      "y": -2.5424625873565674,
+      "sim_a": 0.6068,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "wondered",
+      "label": "wondered",
+      "group": "neighbor_a",
+      "x": -2.4626998901367188,
+      "y": -2.4679951667785645,
+      "sim_a": 0.5931,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "maybe",
+      "label": "maybe",
+      "group": "neighbor_a",
+      "x": -2.639474391937256,
+      "y": -3.037221908569336,
+      "sim_a": 0.5825,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "know",
+      "label": "know",
+      "group": "neighbor_a",
+      "x": -2.7543435096740723,
+      "y": -3.23274564743042,
+      "sim_a": 0.5777,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "remember",
+      "label": "remember",
+      "group": "neighbor_a",
+      "x": -2.7385902404785156,
+      "y": -2.742358446121216,
+      "sim_a": 0.5718,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "worry",
+      "label": "worry",
+      "group": "neighbor_a",
+      "x": -2.192556381225586,
+      "y": -2.7326302528381348,
+      "sim_a": 0.561,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "thing",
+      "label": "thing",
+      "group": "neighbor_a",
+      "x": -2.571300983428955,
+      "y": -3.2265005111694336,
+      "sim_a": 0.557,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "tell",
+      "label": "tell",
+      "group": "neighbor_a",
+      "x": -2.5670652389526367,
+      "y": -3.0189876556396484,
+      "sim_a": 0.5553,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "something",
+      "label": "something",
+      "group": "neighbor_a",
+      "x": -2.7083849906921387,
+      "y": -3.420228958129883,
+      "sim_a": 0.5484,
+      "sim_b": 0.0,
+      "midpoint_dist": null
+    },
+    {
+      "id": "apathy",
+      "label": "apathy",
+      "group": "neighbor_b",
+      "x": 1.7996786832809448,
+      "y": -1.7752797603607178,
+      "sim_a": 0.0,
+      "sim_b": 0.6562,
+      "midpoint_dist": null
+    },
+    {
+      "id": "disregard",
+      "label": "disregard",
+      "group": "neighbor_b",
+      "x": 2.3826534748077393,
+      "y": -1.9657883644104004,
+      "sim_a": 0.0,
+      "sim_b": 0.6331,
+      "midpoint_dist": null
+    },
+    {
+      "id": "disinterest",
+      "label": "disinterest",
+      "group": "neighbor_b",
+      "x": 1.842219352722168,
+      "y": -2.0127365589141846,
+      "sim_a": 0.0,
+      "sim_b": 0.6296,
+      "midpoint_dist": null
+    },
+    {
+      "id": "callous",
+      "label": "callous",
+      "group": "neighbor_b",
+      "x": 2.008498191833496,
+      "y": -1.9070730209350586,
+      "sim_a": 0.0,
+      "sim_b": 0.5951,
+      "midpoint_dist": null
+    },
+    {
+      "id": "passivity",
+      "label": "passivity",
+      "group": "neighbor_b",
+      "x": 1.2942743301391602,
+      "y": -2.0623903274536133,
+      "sim_a": 0.0,
+      "sim_b": 0.5891,
+      "midpoint_dist": null
+    },
+    {
+      "id": "insensitivity",
+      "label": "insensitivity",
+      "group": "neighbor_b",
+      "x": 1.9563121795654297,
+      "y": -2.6729493141174316,
+      "sim_a": 0.0,
+      "sim_b": 0.5618,
+      "midpoint_dist": null
+    },
+    {
+      "id": "callousness",
+      "label": "callousness",
+      "group": "neighbor_b",
+      "x": 1.4179863929748535,
+      "y": -2.1852142810821533,
+      "sim_a": 0.0,
+      "sim_b": 0.5528,
+      "midpoint_dist": null
+    },
+    {
+      "id": "__midpoint__",
+      "label": "MIDPOINT",
+      "group": "midpoint",
+      "x": 0.0,
+      "y": 0.0,
+      "sim_a": 0.5,
+      "sim_b": 0.5,
+      "midpoint_dist": 0.0
+    }
+  ],
+  "bridges": [
+    {
+      "word": "ignorance",
+      "midpoint_dist": 0.3813,
+      "sim_to_seed": 0.2372,
+      "sim_to_opposite": 0.6634
+    },
+    {
+      "word": "cynicism",
+      "midpoint_dist": 0.4116,
+      "sim_to_seed": 0.2547,
+      "sim_to_opposite": 0.6084
+    },
+    {
+      "word": "disdain",
+      "midpoint_dist": 0.4151,
+      "sim_to_seed": 0.226,
+      "sim_to_opposite": 0.6259
+    },
+    {
+      "word": "seeming",
+      "midpoint_dist": 0.4317,
+      "sim_to_seed": 0.259,
+      "sim_to_opposite": 0.5777
+    },
+    {
+      "word": "arrogance",
+      "midpoint_dist": 0.455,
+      "sim_to_seed": 0.2083,
+      "sim_to_opposite": 0.5849
+    },
+    {
+      "word": "skepticism",
+      "midpoint_dist": 0.4684,
+      "sim_to_seed": 0.3084,
+      "sim_to_opposite": 0.4894
+    },
+    {
+      "word": "ambivalence",
+      "midpoint_dist": 0.4972,
+      "sim_to_seed": 0.2076,
+      "sim_to_opposite": 0.5277
+    },
+    {
+      "word": "sense",
+      "midpoint_dist": 0.5022,
+      "sim_to_seed": 0.4441,
+      "sim_to_opposite": 0.3385
+    },
+    {
+      "word": "despair",
+      "midpoint_dist": 0.5037,
+      "sim_to_seed": 0.2928,
+      "sim_to_opposite": 0.4532
+    },
+    {
+      "word": "frustration",
+      "midpoint_dist": 0.5077,
+      "sim_to_seed": 0.2791,
+      "sim_to_opposite": 0.4582
+    }
+  ],
+  "method": "GloVe embedding midpoint"
+}

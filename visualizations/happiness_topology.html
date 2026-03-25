@@ -5,169 +5,757 @@
     <title>Sentiment Topology - Happiness</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <style>
-        body { font-family: 'Inter', Arial, sans-serif; margin: 0; background-color: #ffffff; color: #333; }
-        .header { text-align: center; padding: 20px 0; border-bottom: 1px solid #eee; }
-        h1 { margin: 0 0 5px 0; font-size: 24px; font-weight: 400; }
-        .subtitle { color: #666; font-size: 14px; }
-        
-        .controls { text-align: center; margin: 20px auto; padding: 15px; background: #fafafa; border: 1px solid #ddd; border-radius: 8px; max-width: 600px; }
-        .controls button { padding: 10px 20px; margin: 0 10px; cursor: pointer; border: none; border-radius: 4px; font-weight: bold; transition: 0.2s; }
-        .btn-standard { background: #e0e0e0; color: #333; }
-        .btn-bidirectional { background: #0066cc; color: white; }
-        .controls button.active { box-shadow: 0 0 0 3px rgba(0,102,204,0.3); }
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400&display=swap');
 
-        .legend { position: fixed; bottom: 30px; left: 30px; background: white; padding: 15px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .legend-title { font-weight: bold; margin-bottom: 10px; font-size: 14px; }
-        .legend-item { display: flex; align-items: center; margin: 8px 0; font-size: 12px; }
-        .legend-color { width: 16px; height: 16px; border-radius: 50%; margin-right: 10px; border: 1px solid #000; }
-        
-        #chart-container { width: 100vw; height: 80vh; overflow: hidden; }
-        svg { width: 100%; height: 100%; display: block; }
-        .back-link { position: absolute; top: 20px; left: 20px; text-decoration: none; color: #0066cc; font-weight: bold; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+
+        .header {
+            text-align: center;
+            padding: 28px 0 18px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #111;
+        }
+
+        h1 .seed-word {
+            color: #0055cc;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 13px;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ---- METHOD TOGGLE ---- */
+        .controls {
+            text-align: center;
+            margin: 20px auto;
+            padding: 12px 20px;
+            max-width: 680px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            background: #f7f7f7;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .toggle-group {
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #d0d0d0;
+            background: #fff;
+        }
+
+        .toggle-btn {
+            padding: 11px 24px;
+            cursor: pointer;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+            background: #fff;
+            transition: all 0.25s ease;
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        .toggle-btn:not(:last-child) {
+            border-right: 1px solid #d0d0d0;
+        }
+
+        .toggle-btn:hover {
+            background: #f0f4ff;
+            color: #333;
+        }
+
+        .toggle-btn.active {
+            background: #0055cc;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .toggle-btn .method-tag {
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .toggle-btn.active .method-tag {
+            opacity: 0.85;
+        }
+
+        /* ---- LEGEND ---- */
+        .legend {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            background: #fff;
+            padding: 16px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            z-index: 100;
+            transition: opacity 0.3s;
+        }
+
+        .legend-title {
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 7px 0;
+            font-size: 12.5px;
+            color: #444;
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        /* ---- INFO PANEL (for embedding view) ---- */
+        .info-panel {
+            position: fixed;
+            top: 120px;
+            right: 28px;
+            width: 260px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            z-index: 100;
+            display: none;
+            font-size: 12.5px;
+        }
+
+        .info-panel h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: #111;
+        }
+
+        .info-panel .bridge-word {
+            display: inline-block;
+            padding: 4px 12px;
+            margin: 3px 2px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .info-panel .bridge-word.top {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+            border: 1px solid #ffcc80;
+        }
+
+        .info-panel .bridge-word.secondary {
+            background: #f5f5f5;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+
+        .info-panel .score {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #999;
+        }
+
+        /* ---- CHART ---- */
+        #chart-container {
+            width: 100vw;
+            height: calc(100vh - 120px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* ---- TOOLTIP ---- */
+        .tooltip {
+            position: fixed;
+            background: rgba(10, 10, 20, 0.92);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            pointer-events: none;
+            display: none;
+            z-index: 200;
+            max-width: 260px;
+            line-height: 1.5;
+            backdrop-filter: blur(8px);
+        }
+
+        .tooltip .tt-word {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .tooltip .tt-metric {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        /* ---- BACK LINK ---- */
+        .back-link {
+            position: fixed;
+            top: 18px;
+            left: 20px;
+            text-decoration: none;
+            color: #0055cc;
+            font-weight: 500;
+            font-size: 14px;
+            z-index: 200;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover { opacity: 0.7; }
+
+        /* ---- EMBEDDING AXIS LABELS ---- */
+        .axis-label {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            fill: #ccc;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+
+        .axis-sublabel {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            fill: #bbb;
+            text-anchor: middle;
+            pointer-events: none;
+            letter-spacing: 1px;
+        }
+
+        /* ---- MIDPOINT PULSE ---- */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; r: 18; }
+            50% { opacity: 0.6; r: 26; }
+        }
     </style>
 </head>
 <body>
 
-    <a href="../sentiment_topology.html" class="back-link">&larr; Back to Hub</a>
+    <a href="../sentiment_topology.html" class="back-link">&larr; Back</a>
 
     <div class="header">
-        <h1>Sentiment Topology: HAPPINESS NETWORK</h1>
-        <div class="subtitle">Exploring semantic drift and directional convergence</div>
+        <h1>Sentiment Topology: <span class="seed-word">HAPPINESS</span></h1>
+        <div class="subtitle" id="subtitle-text">Exploring semantic drift and directional convergence</div>
     </div>
 
     <div class="controls">
-        <p style="margin-top:0; font-size: 14px; color: #555;">Select Methodology:</p>
-        <button id="btn-std" class="btn-standard active" onclick="loadNetwork('standard')">Standard API (Noisy)</button>
-        <button id="btn-bi" class="btn-bidirectional" onclick="loadNetwork('bidirectional')">Bidirectional Gatekeeper (Pruned)</button>
+        <div class="toggle-group">
+            <button id="btn-network" class="toggle-btn active" onclick="switchView('network')">
+                Synonym Network
+                <span class="method-tag">WordNet BFS</span>
+            </button>
+            <button id="btn-embedding" class="toggle-btn" onclick="switchView('embedding')">
+                Embedding Space
+                <span class="method-tag">GloVe Midpoint</span>
+            </button>
+        </div>
     </div>
 
-    <div class="legend">
+    <!-- NETWORK LEGEND -->
+    <div class="legend" id="legend-network">
         <div class="legend-title">Node Typology</div>
-        <div class="legend-item"><div class="legend-color" style="background: #ffffff;"></div><span>Central Seed</span></div>
-        <div class="legend-item"><div class="legend-color" style="background: #4caf50;"></div><span>Synonym Trajectory</span></div>
-        <div class="legend-item"><div class="legend-color" style="background: #f44336;"></div><span>Antonym Trajectory</span></div>
-        <div class="legend-item"><div class="legend-color" style="background: #ffeb3b; border-width: 2px;"></div><span>Semantic Collision</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background: #ffffff; border: 2px solid #333;"></div><span>Central Seed</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background: #4caf50;"></div><span>Synonym Trajectory</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background: #f44336;"></div><span>Antonym Trajectory</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background: #ffeb3b; border: 2px solid #f9a825;"></div><span>Semantic Collision</span></div>
     </div>
+
+    <!-- EMBEDDING LEGEND -->
+    <div class="legend" id="legend-embedding" style="display: none;">
+        <div class="legend-title">Embedding Space</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #0055cc;"></div><span>Seed Pole</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background: #cc3333;"></div><span>Opposite Pole</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background: linear-gradient(135deg, #ff8f00, #ff6d00); border: 2px solid #e65100;"></div><span>Bridge (near midpoint)</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background: #a5d6a7;"></div><span>Seed Neighbor</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background: #ef9a9a;"></div><span>Opposite Neighbor</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background: #fff; border: 2px dashed #ff8f00;"></div><span>Midpoint</span></div>
+    </div>
+
+    <!-- BRIDGE INFO PANEL -->
+    <div class="info-panel" id="info-panel"></div>
+
+    <!-- TOOLTIP -->
+    <div class="tooltip" id="tooltip"></div>
 
     <div id="chart-container"></div>
 
     <script>
-        const width = window.innerWidth;
-        const height = window.innerHeight * 0.8;
-        let simulation = null;
+    // =====================================================================
+    // CONFIGURATION — Change these for each emotion page
+    // =====================================================================
+    const EMOTION = "happiness";
+    const OPPOSITE = "courage";  // Must match what embedding_bridges.py used
 
-        const svg = d3.select("#chart-container").append("svg")
-            .attr("viewBox", [0, 0, width, height*3.0])
-            .style("width", "100%")
-            .style("height", "100%");
-        
-        const gMain = svg.append("g");
-        const gLinks = gMain.append("g").attr("stroke-opacity", 0.6);
+    // File paths
+    const NETWORK_FILE = `../data/${EMOTION}_standard.json`;
+    const EMBEDDING_FILE = `../data/${EMOTION}_embedding.json`;
+
+    // =====================================================================
+    // STATE
+    // =====================================================================
+    const width = window.innerWidth;
+    const height = window.innerHeight * 0.85;
+    let simulation = null;
+    let currentView = 'network';
+
+    const svg = d3.select("#chart-container").append("svg")
+        .attr("viewBox", [0, 0, width, height]);
+
+    const defs = svg.append("defs");
+
+    // Gradient for the bridge zone
+    const gradient = defs.append("linearGradient")
+        .attr("id", "bridge-gradient")
+        .attr("x1", "0%").attr("x2", "100%");
+    gradient.append("stop").attr("offset", "0%").attr("stop-color", "#0055cc").attr("stop-opacity", 0.06);
+    gradient.append("stop").attr("offset", "50%").attr("stop-color", "#ff8f00").attr("stop-opacity", 0.08);
+    gradient.append("stop").attr("offset", "100%").attr("stop-color", "#cc3333").attr("stop-opacity", 0.06);
+
+    // Radial glow for bridge words
+    const glow = defs.append("radialGradient").attr("id", "bridge-glow");
+    glow.append("stop").attr("offset", "0%").attr("stop-color", "#ff8f00").attr("stop-opacity", 0.4);
+    glow.append("stop").attr("offset", "100%").attr("stop-color", "#ff8f00").attr("stop-opacity", 0);
+
+    const gMain = svg.append("g");
+
+    const zoom = d3.zoom()
+        .scaleExtent([0.2, 6])
+        .on("zoom", (event) => gMain.attr("transform", event.transform));
+    svg.call(zoom);
+
+    const tooltip = document.getElementById('tooltip');
+
+    // =====================================================================
+    // VIEW SWITCHER
+    // =====================================================================
+    function switchView(view) {
+        currentView = view;
+
+        document.getElementById('btn-network').classList.toggle('active', view === 'network');
+        document.getElementById('btn-embedding').classList.toggle('active', view === 'embedding');
+        document.getElementById('legend-network').style.display = view === 'network' ? 'block' : 'none';
+        document.getElementById('legend-embedding').style.display = view === 'embedding' ? 'block' : 'none';
+        document.getElementById('info-panel').style.display = view === 'embedding' ? 'block' : 'none';
+
+        if (view === 'network') {
+            document.getElementById('subtitle-text').textContent = 'Exploring semantic drift and directional convergence';
+            loadNetwork();
+        } else {
+            document.getElementById('subtitle-text').textContent = 'Words equidistant between opposing poles in GloVe vector space';
+            loadEmbedding();
+        }
+    }
+
+    // =====================================================================
+    // NETWORK VIEW (your existing code, cleaned up)
+    // =====================================================================
+    function loadNetwork() {
+        gMain.selectAll("*").remove();
+        if (simulation) simulation.stop();
+
+        svg.call(zoom.transform, d3.zoomIdentity
+            .translate(width / 2, height / 2).scale(0.8)
+            .translate(-width / 2, -height / 2));
+
+        const gLinks = gMain.append("g");
         const gNodes = gMain.append("g");
         const gLabels = gMain.append("g");
 
-        const zoom = d3.zoom()
-            .scaleExtent([0.1, 5]) // Limits: [Zoom out 10x, Zoom in 5x]
-            .on("zoom", (event) => {
-                gMain.attr("transform", event.transform);
+        d3.json(NETWORK_FILE).then(data => {
+            const links = data.links.map(d => ({...d}));
+            const nodes = data.nodes.map(d => ({...d}));
+
+            simulation = d3.forceSimulation(nodes)
+                .force("link", d3.forceLink(links).id(d => d.id).distance(80).strength(1))
+                .force("charge", d3.forceManyBody().strength(-200))
+                .force("collide", d3.forceCollide().radius(15))
+                .force("x", d3.forceX(d => {
+                    if (d.group === "red") return width * 0.25;
+                    if (d.group === "green") return width * 0.75;
+                    return width * 0.5;
+                }).strength(0.4))
+                .force("y", d3.forceY(height / 2).strength(0.1));
+
+            gLinks.selectAll("line")
+                .data(links).join("line")
+                .attr("stroke-width", 1.5)
+                .attr("stroke", "#e0a050")
+                .attr("stroke-opacity", 0.5);
+
+            const node = gNodes.selectAll("circle")
+                .data(nodes).join("circle")
+                .attr("r", d => d.group === "center" ? 14 : (d.group === "yellow" ? 12 : 6))
+                .attr("fill", d => {
+                    if (d.group === "center") return "#ffffff";
+                    if (d.group === "green") return "#4caf50";
+                    if (d.group === "red") return "#f44336";
+                    if (d.group === "yellow") return "#ffeb3b";
+                    return "#ccc";
+                })
+                .attr("stroke", d => d.group === "center" ? "#333" : (d.group === "yellow" ? "#f9a825" : "#00000020"))
+                .attr("stroke-width", d => (d.group === "center" || d.group === "yellow") ? 2.5 : 0.5)
+                .call(d3.drag()
+                    .on("start", (e) => { if (!e.active) simulation.alphaTarget(0.3).restart(); e.subject.fx = e.subject.x; e.subject.fy = e.subject.y; })
+                    .on("drag", (e) => { e.subject.fx = e.x; e.subject.fy = e.y; })
+                    .on("end", (e) => { if (!e.active) simulation.alphaTarget(0); e.subject.fx = null; e.subject.fy = null; }));
+
+            gLabels.selectAll("text")
+                .data(nodes).join("text")
+                .text(d => d.label)
+                .attr("font-size", d => (d.group === "center" || d.group === "yellow") ? "14px" : "10px")
+                .attr("font-weight", d => (d.group === "center" || d.group === "yellow") ? "600" : "400")
+                .attr("font-family", "'DM Sans', sans-serif")
+                .attr("fill", "#333")
+                .attr("dx", 12).attr("dy", 4)
+                .style("pointer-events", "none");
+
+            simulation.on("tick", () => {
+                gLinks.selectAll("line")
+                    .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+                gNodes.selectAll("circle").attr("cx", d => d.x).attr("cy", d => d.y);
+                gLabels.selectAll("text").attr("x", d => d.x).attr("y", d => d.y);
             });
-        svg.call(zoom);        
-        svg.call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
-                
-        // Function to load and render the selected network
-        function loadNetwork(type) {
-            // Update button styles
-            document.getElementById('btn-std').classList.toggle('active', type === 'standard');
-            document.getElementById('btn-bi').classList.toggle('active', type === 'bidirectional');
+        }).catch(err => {
+            gMain.append("text").attr("x", width/2).attr("y", height/2)
+                .attr("text-anchor", "middle").attr("fill", "#cc0000")
+                .text(`Error loading ${NETWORK_FILE}`);
+        });
+    }
 
-            // Set the correct file path based on the emotion and type
-            // CHANGE THIS PREFIX IF YOU DUPLICATE THIS FILE FOR JOY, TRUST, ETC.
-            const dataFile = `../data/happiness_${type}.json`;
+    // =====================================================================
+    // EMBEDDING VIEW
+    // =====================================================================
+    function loadEmbedding() {
+        gMain.selectAll("*").remove();
+        if (simulation) { simulation.stop(); simulation = null; }
 
-            d3.json(dataFile).then(data => {
-                // Clear existing
-                gLinks.selectAll("*").remove();
-                gNodes.selectAll("*").remove();
-                gLabels.selectAll("*").remove();
-                if(simulation) simulation.stop();
+        svg.call(zoom.transform, d3.zoomIdentity);
 
-                const links = data.links.map(d => ({...d}));
-                const nodes = data.nodes.map(d => ({...d}));
+        d3.json(EMBEDDING_FILE).then(data => {
+            renderEmbeddingScatter(data);
+        }).catch(err => {
+            gMain.append("text").attr("x", width/2).attr("y", height/2)
+                .attr("text-anchor", "middle").attr("fill", "#cc0000").attr("font-size", "14px")
+                .text(`Error loading ${EMBEDDING_FILE} — Run embedding_bridges.py first`);
+        });
+    }
 
-                // Directional Physics Engine
-                simulation = d3.forceSimulation(nodes)
-                    .force("link", d3.forceLink(links).id(d => d.id).distance(80).strength(1))
-                    .force("charge", d3.forceManyBody().strength(-200))
-                    .force("collide", d3.forceCollide().radius(15))
-                    .force("x", d3.forceX(d => {
-                        if (d.group === "red") return width * 0.25;      // Pull Red Left
-                        if (d.group === "green") return width * 0.75;    // Pull Green Right
-                        return width * 0.5;                              // Keep Seeds/Collisions Center
-                    }).strength(0.4))
-                    .force("y", d3.forceY(height / 2).strength(0.1));
+    function renderEmbeddingScatter(data) {
+        const nodes = data.nodes;
+        const margin = { top: 80, right: 60, bottom: 80, left: 60 };
+        const w = width - margin.left - margin.right;
+        const h = height - margin.top - margin.bottom;
 
-                // Draw Links
-                const link = gLinks.selectAll("line")
-                    .data(links).join("line")
-                    .attr("stroke-width", 2)
-                    .attr("stroke", "#ff9800");
+        // Scale x/y from embedding coordinates
+        const xExtent = d3.extent(nodes, d => d.x);
+        const yExtent = d3.extent(nodes, d => d.y);
 
-                // Draw Nodes
-                const node = gNodes.selectAll("circle")
-                    .data(nodes).join("circle")
-                    .attr("r", d => d.group === "center" ? 14 : (d.group === "yellow" ? 12 : 7))
-                    .attr("fill", d => {
-                        if (d.group === "center") return "#ffffff";
-                        if (d.group === "green") return "#4caf50";
-                        if (d.group === "red") return "#f44336";
-                        if (d.group === "yellow") return "#ffeb3b";
-                        return "#cccccc";
-                    })
-                    .attr("stroke", "#000000")
-                    .attr("stroke-width", d => d.group === "center" || d.group === "yellow" ? 2 : 1)
-                    .call(d3.drag()
-                        .on("start", dragstarted)
-                        .on("drag", dragged)
-                        .on("end", dragended));
+        // Add padding
+        const xPad = (xExtent[1] - xExtent[0]) * 0.12;
+        const yPad = (yExtent[1] - yExtent[0]) * 0.12;
 
-                // Draw Labels
-                const label = gLabels.selectAll("text")
-                    .data(nodes).join("text")
-                    .text(d => d.label)
-                    .attr("font-size", d => d.group === "center" || d.group === "yellow" ? "16px" : "11px")
-                    .attr("font-weight", d => d.group === "center" || d.group === "yellow" ? "bold" : "normal")
-                    .attr("fill", "#000000")
-                    .attr("dx", 12)
-                    .attr("dy", 4)
-                    .style("pointer-events", "none");
+        const xScale = d3.scaleLinear()
+            .domain([xExtent[0] - xPad, xExtent[1] + xPad])
+            .range([margin.left, width - margin.right]);
 
-                // Tick function
-                simulation.on("tick", () => {
-                    link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
-                        .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
-                    node.attr("cx", d => d.x).attr("cy", d => d.y);
-                    label.attr("x", d => d.x).attr("y", d => d.y);
-                });
+        const yScale = d3.scaleLinear()
+            .domain([yExtent[0] - yPad, yExtent[1] + yPad])
+            .range([height - margin.bottom, margin.top]);
 
-                function dragstarted(event) {
-                    if (!event.active) simulation.alphaTarget(0.3).restart();
-                    event.subject.fx = event.subject.x; event.subject.fy = event.subject.y;
-                }
-                function dragged(event) {
-                    event.subject.fx = event.x; event.subject.fy = event.y;
-                }
-                function dragended(event) {
-                    if (!event.active) simulation.alphaTarget(0);
-                    event.subject.fx = null; event.subject.fy = null;
-                }
-            }).catch(error => {
-                console.error("Error loading JSON data:", error);
-                document.getElementById('chart-container').innerHTML = `<p style="text-align:center; margin-top: 50px; color: red;">Error loading data: Ensure ${dataFile} exists in the data directory and you are running a local server.</p>`;
+        const g = gMain.append("g");
+
+        // ---- Background: gradient bridge zone ----
+        const midX = xScale(0);
+        const zoneWidth = w * 0.25;
+        g.append("rect")
+            .attr("x", midX - zoneWidth / 2)
+            .attr("y", margin.top)
+            .attr("width", zoneWidth)
+            .attr("height", h)
+            .attr("fill", "url(#bridge-gradient)")
+            .attr("rx", 12)
+            .attr("opacity", 0.7);
+
+        // Dashed midpoint line
+        g.append("line")
+            .attr("x1", midX).attr("x2", midX)
+            .attr("y1", margin.top + 10).attr("y2", height - margin.bottom - 10)
+            .attr("stroke", "#ff8f00")
+            .attr("stroke-width", 1)
+            .attr("stroke-dasharray", "6,4")
+            .attr("opacity", 0.4);
+
+        // ---- Axis labels ----
+        const poleA = nodes.find(n => n.group === "pole_a");
+        const poleB = nodes.find(n => n.group === "pole_b");
+
+        g.append("text").attr("class", "axis-label")
+            .attr("x", margin.left + 60).attr("y", height - 25)
+            .text(poleA ? poleA.label : data.seed.toUpperCase());
+
+        g.append("text").attr("class", "axis-label")
+            .attr("x", width - margin.right - 60).attr("y", height - 25)
+            .text(poleB ? poleB.label : data.opposite.toUpperCase());
+
+        g.append("text").attr("class", "axis-sublabel")
+            .attr("x", midX).attr("y", height - 18)
+            .text("◆ CONCEPTUAL MIDPOINT ◆");
+
+        // ---- Connecting lines from bridges to midpoint ----
+        const bridgeNodes = nodes.filter(n => n.group === "bridge");
+        const midpointNode = nodes.find(n => n.group === "midpoint");
+        const midPx = midpointNode ? xScale(midpointNode.x) : midX;
+        const midPy = midpointNode ? yScale(midpointNode.y) : height / 2;
+
+        bridgeNodes.forEach(bn => {
+            g.append("line")
+                .attr("x1", midPx).attr("y1", midPy)
+                .attr("x2", xScale(bn.x)).attr("y2", yScale(bn.y))
+                .attr("stroke", "#ff8f00")
+                .attr("stroke-width", 0.6)
+                .attr("stroke-opacity", 0.2)
+                .attr("stroke-dasharray", "2,3");
+        });
+
+        // ---- Connecting lines from pole neighbors to their pole ----
+        if (poleA) {
+            nodes.filter(n => n.group === "neighbor_a").forEach(nn => {
+                g.append("line")
+                    .attr("x1", xScale(poleA.x)).attr("y1", yScale(poleA.y))
+                    .attr("x2", xScale(nn.x)).attr("y2", yScale(nn.y))
+                    .attr("stroke", "#0055cc").attr("stroke-width", 0.4).attr("stroke-opacity", 0.15);
+            });
+        }
+        if (poleB) {
+            nodes.filter(n => n.group === "neighbor_b").forEach(nn => {
+                g.append("line")
+                    .attr("x1", xScale(poleB.x)).attr("y1", yScale(poleB.y))
+                    .attr("x2", xScale(nn.x)).attr("y2", yScale(nn.y))
+                    .attr("stroke", "#cc3333").attr("stroke-width", 0.4).attr("stroke-opacity", 0.15);
             });
         }
 
-        // Initialize with the standard network
-        loadNetwork('standard');
+        // ---- Midpoint glow ----
+        if (midpointNode) {
+            g.append("circle")
+                .attr("cx", midPx).attr("cy", midPy)
+                .attr("r", 22)
+                .attr("fill", "url(#bridge-glow)")
+                .style("animation", "pulse 3s ease-in-out infinite");
+
+            g.append("circle")
+                .attr("cx", midPx).attr("cy", midPy)
+                .attr("r", 5)
+                .attr("fill", "none")
+                .attr("stroke", "#ff8f00")
+                .attr("stroke-width", 2)
+                .attr("stroke-dasharray", "3,3")
+                .attr("opacity", 0.7);
+        }
+
+        // ---- Draw nodes ----
+        const colorMap = {
+            pole_a: "#0055cc",
+            pole_b: "#cc3333",
+            bridge: "#ff8f00",
+            neighbor_a: "#a5d6a7",
+            neighbor_b: "#ef9a9a",
+            midpoint: "transparent"
+        };
+
+        const radiusMap = {
+            pole_a: 16,
+            pole_b: 16,
+            bridge: 9,
+            neighbor_a: 5,
+            neighbor_b: 5,
+            midpoint: 0
+        };
+
+        // Sort: neighbors first, bridges on top, poles on very top
+        const drawOrder = { neighbor_a: 0, neighbor_b: 0, bridge: 1, pole_a: 2, pole_b: 2, midpoint: -1 };
+        const sortedNodes = [...nodes].sort((a, b) => (drawOrder[a.group] || 0) - (drawOrder[b.group] || 0));
+
+        const circles = g.selectAll(".emb-node")
+            .data(sortedNodes.filter(n => n.group !== "midpoint"))
+            .join("circle")
+            .attr("class", "emb-node")
+            .attr("cx", d => xScale(d.x))
+            .attr("cy", d => yScale(d.y))
+            .attr("r", 0)
+            .attr("fill", d => colorMap[d.group] || "#999")
+            .attr("stroke", d => {
+                if (d.group === "pole_a") return "#003d99";
+                if (d.group === "pole_b") return "#991f1f";
+                if (d.group === "bridge") return "#e65100";
+                return "transparent";
+            })
+            .attr("stroke-width", d => (d.group === "pole_a" || d.group === "pole_b") ? 3 : (d.group === "bridge" ? 2 : 0))
+            .attr("opacity", d => d.group.startsWith("neighbor") ? 0.6 : 1)
+            .style("cursor", "pointer");
+
+        // Animate in
+        circles.transition()
+            .duration(600)
+            .delay((d, i) => i * 12)
+            .ease(d3.easeBackOut.overshoot(1.2))
+            .attr("r", d => radiusMap[d.group] || 5);
+
+        // ---- Labels ----
+        const labels = g.selectAll(".emb-label")
+            .data(sortedNodes.filter(n => n.group !== "midpoint"))
+            .join("text")
+            .attr("class", "emb-label")
+            .attr("x", d => xScale(d.x))
+            .attr("y", d => yScale(d.y))
+            .attr("dx", d => (d.group === "pole_a" || d.group === "pole_b") ? 0 : 14)
+            .attr("dy", d => (d.group === "pole_a" || d.group === "pole_b") ? -24 : 4)
+            .attr("text-anchor", d => (d.group === "pole_a" || d.group === "pole_b") ? "middle" : "start")
+            .attr("font-family", d => (d.group === "pole_a" || d.group === "pole_b") ? "'DM Serif Display', serif" : "'DM Sans', sans-serif")
+            .attr("font-size", d => {
+                if (d.group === "pole_a" || d.group === "pole_b") return "20px";
+                if (d.group === "bridge") return "12.5px";
+                return "10px";
+            })
+            .attr("font-weight", d => {
+                if (d.group === "pole_a" || d.group === "pole_b") return "400";
+                if (d.group === "bridge") return "600";
+                return "400";
+            })
+            .attr("fill", d => {
+                if (d.group === "pole_a") return "#0055cc";
+                if (d.group === "pole_b") return "#cc3333";
+                if (d.group === "bridge") return "#bf360c";
+                return "#888";
+            })
+            .attr("opacity", 0)
+            .text(d => d.label);
+
+        labels.transition()
+            .duration(400)
+            .delay((d, i) => 200 + i * 12)
+            .attr("opacity", d => {
+                if (d.group === "pole_a" || d.group === "pole_b") return 1;
+                if (d.group === "bridge") return 0.9;
+                return 0.5;
+            });
+
+        // ---- Hover tooltip ----
+        circles
+            .on("mouseover", function(event, d) {
+                d3.select(this).transition().duration(150)
+                    .attr("r", (radiusMap[d.group] || 5) * 1.5);
+
+                let html = `<div class="tt-word">${d.label}</div>`;
+                if (d.sim_a !== null && d.sim_a !== undefined) {
+                    html += `<div class="tt-metric">Sim to ${data.seed}: ${(d.sim_a * 100).toFixed(1)}%</div>`;
+                }
+                if (d.sim_b !== null && d.sim_b !== undefined) {
+                    html += `<div class="tt-metric">Sim to ${data.opposite}: ${(d.sim_b * 100).toFixed(1)}%</div>`;
+                }
+                if (d.midpoint_dist !== null && d.midpoint_dist !== undefined) {
+                    html += `<div class="tt-metric">Midpoint distance: ${d.midpoint_dist.toFixed(4)}</div>`;
+                }
+
+                tooltip.innerHTML = html;
+                tooltip.style.display = 'block';
+                tooltip.style.left = (event.clientX + 16) + 'px';
+                tooltip.style.top = (event.clientY - 10) + 'px';
+            })
+            .on("mousemove", function(event) {
+                tooltip.style.left = (event.clientX + 16) + 'px';
+                tooltip.style.top = (event.clientY - 10) + 'px';
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this).transition().duration(150)
+                    .attr("r", radiusMap[d.group] || 5);
+                tooltip.style.display = 'none';
+            });
+
+        // ---- Info panel: list bridge words ----
+        const panel = document.getElementById('info-panel');
+        const topBridges = data.bridges.slice(0, 8);
+        const restBridges = data.bridges.slice(8, 20);
+
+        panel.innerHTML = `
+            <h3>Bridge Words</h3>
+            <p style="font-size: 11px; color: #888; margin-bottom: 12px;">
+                Nearest to the midpoint between<br>
+                <strong style="color:#0055cc">${data.seed}</strong> and
+                <strong style="color:#cc3333">${data.opposite}</strong>
+            </p>
+            <div style="margin-bottom: 10px;">
+                ${topBridges.map((b, i) =>
+                    `<span class="bridge-word top">${b.word} <span class="score">${(b.midpoint_dist).toFixed(3)}</span></span>`
+                ).join('')}
+            </div>
+            <div>
+                ${restBridges.map(b =>
+                    `<span class="bridge-word secondary">${b.word}</span>`
+                ).join('')}
+            </div>
+            <p style="font-size: 10px; color: #aaa; margin-top: 14px; line-height: 1.5;">
+                Method: GloVe 300d vectors.<br>
+                Balance filter: max 3:1 pole ratio.<br>
+                Lower distance = closer to midpoint.
+            </p>
+        `;
+    }
+
+    // =====================================================================
+    // INIT
+    // =====================================================================
+    loadNetwork();
     </script>
 </body>
 </html>

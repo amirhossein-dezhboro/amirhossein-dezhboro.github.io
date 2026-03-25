@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sentiment Topology - Sadness</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        body { font-family: 'Inter', Arial, sans-serif; margin: 0; background-color: #ffffff; color: #333; }
+        .header { text-align: center; padding: 20px 0; border-bottom: 1px solid #eee; }
+        h1 { margin: 0 0 5px 0; font-size: 24px; font-weight: 400; }
+        .subtitle { color: #666; font-size: 14px; }
+        
+        .controls { text-align: center; margin: 20px auto; padding: 15px; background: #fafafa; border: 1px solid #ddd; border-radius: 8px; max-width: 600px; }
+        .controls button { padding: 10px 20px; margin: 0 10px; cursor: pointer; border: none; border-radius: 4px; font-weight: bold; transition: 0.2s; }
+        .btn-standard { background: #e0e0e0; color: #333; }
+        .btn-bidirectional { background: #0066cc; color: white; }
+        .controls button.active { box-shadow: 0 0 0 3px rgba(0,102,204,0.3); }
+
+        .legend { position: fixed; bottom: 30px; left: 30px; background: white; padding: 15px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .legend-title { font-weight: bold; margin-bottom: 10px; font-size: 14px; }
+        .legend-item { display: flex; align-items: center; margin: 8px 0; font-size: 12px; }
+        .legend-color { width: 16px; height: 16px; border-radius: 50%; margin-right: 10px; border: 1px solid #000; }
+        
+        #chart-container { width: 100vw; height: 80vh; overflow: hidden; }
+        svg { width: 100%; height: 100%; display: block; }
+        .back-link { position: absolute; top: 20px; left: 20px; text-decoration: none; color: #0066cc; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <a href="../sentiment_topology.html" class="back-link">&larr; Back to Hub</a>
+
+    <div class="header">
+        <h1>Sentiment Topology: Sadness NETWORK</h1>
+        <div class="subtitle">Exploring semantic drift and directional convergence</div>
+    </div>
+
+    <div class="controls">
+        <p style="margin-top:0; font-size: 14px; color: #555;">Select Methodology:</p>
+        <button id="btn-std" class="btn-standard active" onclick="loadNetwork('standard')">Standard API (Noisy)</button>
+        <button id="btn-bi" class="btn-bidirectional" onclick="loadNetwork('bidirectional')">Bidirectional Gatekeeper (Pruned)</button>
+    </div>
+
+    <div class="legend">
+        <div class="legend-title">Node Typology</div>
+        <div class="legend-item"><div class="legend-color" style="background: #ffffff;"></div><span>Central Seed</span></div>
+        <div class="legend-item"><div class="legend-color" style="background: #4caf50;"></div><span>Synonym Trajectory</span></div>
+        <div class="legend-item"><div class="legend-color" style="background: #f44336;"></div><span>Antonym Trajectory</span></div>
+        <div class="legend-item"><div class="legend-color" style="background: #ffeb3b; border-width: 2px;"></div><span>Semantic Collision</span></div>
+    </div>
+
+    <div id="chart-container"></div>
+
+    <script>
+        const width = window.innerWidth;
+        const height = window.innerHeight * 0.8;
+        let simulation = null;
+
+        const svg = d3.select("#chart-container").append("svg")
+            .attr("viewBox", [0, 0, width, height*3.0])
+            .style("width", "100%")
+            .style("height", "100%");
+        
+        const gMain = svg.append("g");
+        const gLinks = gMain.append("g").attr("stroke-opacity", 0.6);
+        const gNodes = gMain.append("g");
+        const gLabels = gMain.append("g");
+
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 5]) // Limits: [Zoom out 10x, Zoom in 5x]
+            .on("zoom", (event) => {
+                gMain.attr("transform", event.transform);
+            });
+        svg.call(zoom);        
+        svg.call(zoom.transform, d3.zoomIdentity.translate(width/2, height/2).scale(0.8).translate(-width/2, -height/2));
+                
+        // Function to load and render the selected network
+        function loadNetwork(type) {
+            // Update button styles
+            document.getElementById('btn-std').classList.toggle('active', type === 'standard');
+            document.getElementById('btn-bi').classList.toggle('active', type === 'bidirectional');
+
+            // Set the correct file path based on the emotion and type
+            // CHANGE THIS PREFIX IF YOU DUPLICATE THIS FILE FOR JOY, TRUST, ETC.
+            const dataFile = `../data/sadness_${type}.json`;
+
+            d3.json(dataFile).then(data => {
+                // Clear existing
+                gLinks.selectAll("*").remove();
+                gNodes.selectAll("*").remove();
+                gLabels.selectAll("*").remove();
+                if(simulation) simulation.stop();
+
+                const links = data.links.map(d => ({...d}));
+                const nodes = data.nodes.map(d => ({...d}));
+
+                // Directional Physics Engine
+                simulation = d3.forceSimulation(nodes)
+                    .force("link", d3.forceLink(links).id(d => d.id).distance(80).strength(1))
+                    .force("charge", d3.forceManyBody().strength(-200))
+                    .force("collide", d3.forceCollide().radius(15))
+                    .force("x", d3.forceX(d => {
+                        if (d.group === "red") return width * 0.25;      // Pull Red Left
+                        if (d.group === "green") return width * 0.75;    // Pull Green Right
+                        return width * 0.5;                              // Keep Seeds/Collisions Center
+                    }).strength(0.4))
+                    .force("y", d3.forceY(height / 2).strength(0.1));
+
+                // Draw Links
+                const link = gLinks.selectAll("line")
+                    .data(links).join("line")
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "#ff9800");
+
+                // Draw Nodes
+                const node = gNodes.selectAll("circle")
+                    .data(nodes).join("circle")
+                    .attr("r", d => d.group === "center" ? 14 : (d.group === "yellow" ? 12 : 7))
+                    .attr("fill", d => {
+                        if (d.group === "center") return "#ffffff";
+                        if (d.group === "green") return "#4caf50";
+                        if (d.group === "red") return "#f44336";
+                        if (d.group === "yellow") return "#ffeb3b";
+                        return "#cccccc";
+                    })
+                    .attr("stroke", "#000000")
+                    .attr("stroke-width", d => d.group === "center" || d.group === "yellow" ? 2 : 1)
+                    .call(d3.drag()
+                        .on("start", dragstarted)
+                        .on("drag", dragged)
+                        .on("end", dragended));
+
+                // Draw Labels
+                const label = gLabels.selectAll("text")
+                    .data(nodes).join("text")
+                    .text(d => d.label)
+                    .attr("font-size", d => d.group === "center" || d.group === "yellow" ? "16px" : "11px")
+                    .attr("font-weight", d => d.group === "center" || d.group === "yellow" ? "bold" : "normal")
+                    .attr("fill", "#000000")
+                    .attr("dx", 12)
+                    .attr("dy", 4)
+                    .style("pointer-events", "none");
+
+                // Tick function
+                simulation.on("tick", () => {
+                    link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+                        .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+                    node.attr("cx", d => d.x).attr("cy", d => d.y);
+                    label.attr("x", d => d.x).attr("y", d => d.y);
+                });
+
+                function dragstarted(event) {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    event.subject.fx = event.subject.x; event.subject.fy = event.subject.y;
+                }
+                function dragged(event) {
+                    event.subject.fx = event.x; event.subject.fy = event.y;
+                }
+                function dragended(event) {
+                    if (!event.active) simulation.alphaTarget(0);
+                    event.subject.fx = null; event.subject.fy = null;
+                }
+            }).catch(error => {
+                console.error("Error loading JSON data:", error);
+                document.getElementById('chart-container').innerHTML = `<p style="text-align:center; margin-top: 50px; color: red;">Error loading data: Ensure ${dataFile} exists in the data directory and you are running a local server.</p>`;
+            });
+        }
+
+        // Initialize with the standard network
+        loadNetwork('standard');
+    </script>
+</body>
+</html>
